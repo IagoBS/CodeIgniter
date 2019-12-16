@@ -5,8 +5,8 @@ class Redes_sociais_model extends CI_Model {
     {
         parent::__construct();
     }
-    function get_entries() {
-        $query = $this->db->get('redes_socias');
-        return $query->result();
+    public function get_entries() {
+            $query = $this->db->get('redes_sociais');
+            return $query->result();
     }
 }

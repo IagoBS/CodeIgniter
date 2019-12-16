@@ -1,99 +1,130 @@
+<?php defined('BASEPATH') or exit('No direct script access allowed');
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title><?= isset($title) ? $title : 'citec' ?></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title> <?= isset($titulo) ? $titulo : "Citec"?></title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="index.php"><img src="https://www.clubeespirita.com.br/assets/images/logo.png" class="logo-topo" width="120" height="auto"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="quem_somos.php">Quem Somos</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="index.php" id="navbarDropdown" role="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Categorias
-                        </a>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <?php foreach ($autores as $row) { ?>
-                                <a class="dropdown-item" href="./ordenar.php?id=<?= $row['id'] ?>">
-                                    <?= $row['name'] ?>
-                                </a>
-                            <?php
-                            }
-                            ?>
-                        </div>
+    <div class="navbar-fixed">
+        <nav class="light-blue darken-3">
+            <div class="nav-wrapper container">
+                <a href="#" class="brand-logo"> <img src="<?php echo base_url('./assets/imagens/geec.png') ?>" alt=""> </a>
+                <ul id="nav-itens" class="right hide-on-med-and-down ">
+                    <li><a href="<?php echo base_url() ?>">Home</a></li>
+                    <li><a href="<?php echo base_url('index.php/quem') ?>">Quem somos</a></li>
+                    <li>
+                        <a href="#" class="dropdown-trigger" data-target="dropdown-menu">
+                            Categorias<i class="material-icons right">arrow_drop_down</i>
+                        </a>
                     </li>
+                    <li>
+
+                    </li>
+                </ul>
+                <ul id="dropdown-menu" class="dropdown-content">
+                    <?php
+                                                            foreach ($noticias as $row) {
+                    ?>
+                        <li><a href="#"><?php echo $row->category ?></a></li>
+                    <?php
+                                                            }
+                    ?>
 
                 </ul>
-                <form class="form-inline my-2 my-lg-0" method="POST">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search" name="autocomplete">
-                    <button class="btn btn-dark my-2 my-sm-0 " type="submit">Buscar</button>
-                </form>
-
             </div>
-        </div>
-    </nav>
-    <div class="container">
-
-        <?php echo $contents; ?>
+        </nav>
     </div>
-
-    <footer class="page-footer font-small teal pt-4">
-        <div class="container-fluid text-center text-md-left">
+    <!-- contents -->
+    <?= $contents ?>
+    <!-- contents -->
+    <footer class="page-footer footer_cle black-text light-blue darken-3">
+        <div class="container ">
             <div class="row">
-
-                <div class="col-md-6 ">
-
-                    <!-- Content -->
-
-                    <p><strong>Citec - Geec</strong></p>
-                    <p>Avenida Vinte e Um de Abril, 122 - Centro<br>Divinópolis/MG - CEP: 35.500-010<br><strong>(37) 3222-3163 - (37) 9 8851-0879</strong><br>iagobsbastos@gmail.com</p>
+                <div class="col xl3 l3 m6 s6 ">
+                    <p><strong>Mapa do Site</strong></p>
+                    <ul>
+                        <li><a href="<?= base_url('home') ?>">Home</a></li>
+                        <li><a href="#">Quem somos</a></li>
+                        <li><a href="#">Categorias</a></li>
+                        <li><a href="#">Noticias</a></li>
+                        <li><a href="#">Adicionar Noticias</a></li>
+                    </ul>
                 </div>
-                <!-- Grid column -->
-
-                <hr class="clearfix w-100 d-md-none pb-3">
-
-                <!-- Grid column -->
-                <div class="col-md-6 mb-md-0 mb-3">
-
-                    <!-- Content -->
+                <div class="col  l4 m6 s6 text-align">
                     <p><strong>Redes Sociais</strong></p>
-                    <?php
-                    foreach ($redes as $row) {
-                        ?>
-                        <a href="<?= $redes->link ?>">
-                            <i class="" aria-hidden="true"><?= $redes->name ?></i>
-                            <img src="<?= $redes->incone ?>" alt="" height="100px" width="100px">
-                        </a>
+                    
+                    <ul >
+                        
+                        <li>
+                            <a class="g1-new-window  external" href="https://www.facebook.com/geec.org/" rel="nofollow" target="_blank">
+                                <span class="g1-social-icon g1-social-icon--facebook">
+                                    <img src="https://www.ifd.com.br/wp-content/plugins/g1-social-icons/images/facebook/facebook-48.png" alt="facebook" width="24" height="24">
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="g1-new-window  external" href="http://br.linkedin.com/in/irisfreitasduarte/" rel="nofollow" target="_blank">
+                                <span class="g1-social-icon g1-social-icon--linkedin">
+                                    <img src="https://www.ifd.com.br/wp-content/plugins/g1-social-icons/images/linkedin/linkedin-48.png" alt="linkedin" width="24" height="24">
+                                </span>
+                            </a>
+                        </li>
+                        <li><a class="g1-new-window  external" href="http://www.pinterest.com/ifdblog" rel="nofollow" target="_blank">
+                                <span class="g1-social-icon g1-social-icon--pinterest">
+                                    <img src="https://www.ifd.com.br/wp-content/plugins/g1-social-icons/images/pinterest/pinterest-48.png" alt="pinterest" width="24" height="24">
+                                </span>
+                            </a>
+                        </li>
+                        <li><a class="g1-new-window  external" href="http://feeds.feedburner.com/ifdblog" rel="nofollow" target="_blank"><span class="g1-social-icon g1-social-icon--rss">
+                                    <img src="https://www.ifd.com.br/wp-content/plugins/g1-social-icons/images/rss/rss-48.png" alt="rss" width="24" height="24">
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="g1-new-window  external" href="http://www.twitter.com/ifd" rel="nofollow" target="_blank">
+                                <span class="g1-social-icon g1-social-icon--twitter"><img src="https://www.ifd.com.br/wp-content/plugins/g1-social-icons/images/twitter/twitter-48.png" alt="twitter" width="24" height="24">
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <a href="" target="_blank" class="">
+                        <img src="" height="150px" width="150px" alt="">
+                    </a>
+
                 </div>
-            <?php
-            }
-            ?>
+
+                <div class="col xl5 l5 m6 s12">
+                    <p><strong>Citec - Geec</strong></p>
+                    <p>Avenida Vinte e Um de Abril, 122 - Centro<br>Divinópolis/MG - CEP: 35.500-010<br><strong>(37)
+                            3222-3163 - (37) 99132-0050</strong><br>iagobsbastos@gmail.com</p>
+                </div>
+
             </div>
         </div>
+
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            var instances = M.Dropdown.init(elems, {
+                coverTrigger: false
+            });
+        });
 
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        // Or with jQuery
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
 </html>
