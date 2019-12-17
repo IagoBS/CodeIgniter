@@ -8,8 +8,8 @@ class Home extends CI_Controller
     }
     public function index()
     {
-        $this->load->model('home_model');
-        $result = $this->home_model->get_entries();
+        $this->load->model('news_model');
+        $result = $this->news_model->get_entries();
         $date = array(
             "titulo" => "Pagina incial",
             "noticias" => $result

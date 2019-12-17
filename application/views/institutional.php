@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <div class="container">
     <div class="row  blue lighten-5">
         <div class="col s12 m6 l12">
-            <h1 class="center-align"> <?= $quem_somoss->quem_somos ?> </h1>
+            <h1 class="center-align"> <?= $sobre->about ?> </h1>
         </div>
     </div>
     <div class="row">
@@ -35,25 +35,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div class="col s12 m4">
             <div class="card-panel  #03a9f4 light-blue">
                 <h5 class="center">Values</h5>
-                <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-                </span>
+                <span class="white-text"><?= $sobre->values ?> </span>
             </div>
         </div>
         <div class="col s12 m4">
             <div class="card-panel   blue lighten-1">
                 <h5 class="center">Missao</h5>
-                <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-                </span>
+                <span class="white-text"><?= $sobre->mission ?> </span>
             </div>
         </div>
         <div class="col s12 m4">
             <div class="card-panel  #26c6da cyan lighten-1">
                 <h5 class="center">Visao</h5>
-                <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-                </span>
+                <span class="white-text"><?= $sobre->vision ?></span>
             </div>
         </div>
     </div>

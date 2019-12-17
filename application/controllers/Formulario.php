@@ -7,6 +7,7 @@ class Formulario extends CI_Controller
         parent::__construct();
         $this->load->model('categories_model');
         $this->load->model('authors_model');
+        $this->load->model('gallery_model');
     }
     public function index()
     {
@@ -25,30 +26,34 @@ class Formulario extends CI_Controller
     }
     public function create_news()
     {
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('author', "Seu nome", 'required');
-        $this->form_validation->set_rules('dt_register', "dia/mês/ano", 'alpha');
-        $this->form_validation->set_rules('category', "Selecione a categoria", 'required');
-        $this->form_validation->set_rules('content', "Escreva o texto", 'required');
-        $this->form_validation->set_rules('file', "escolha o arquivo", 'required');
-        $this->form_validation->set_rules('send', "aaaaaa", 'alpha');
-        if ($this->form_validation->run()) {
-            $this->load->model('home_model');
-            $data = array(
-                "autor" => $this->input->post('author'),
-                "registro" => $this->input->post('dt_register'),
-                "categoria" => $this->input->post('category'),
-                "content" => $this->input->post('content'),
-                "arquivo" => $this->input->post('photo')
-            );
-            $this->home_model->insert($data);
-            redirect(base_url('index.php/home'));
-        } else {
-            $this->index();
-        }
-    }
-    public function inserted() {
-        $this->index();
+
+        $this->load->helper(['url']);
+        $this->load->model('news_model');
+        $this->load->library('upload');
+
+        $data = array(
+            "id_author" => $this->input->post('author'),
+            "dt_register" => $this->input->post('dt_register'),
+            "dt_change" => date('Y-m-d'),
+            "id_category" => $this->input->post('category'),
+            "title" => $this->input->post('title'),
+            "content" => $this->input->post('content')
+        );
+        $news = $this->news_model->insert($data);
+
+        $file_name = md5(uniqid(rand(), TRUE)) . $this->upload->data('file_ext');
+        $config['upload_path']          = './uploads/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['file_name'] = $file_name;
+        $this->upload->initialize($config);
+        $this->upload->do_upload('photo');
+        
+        $gallery_data = array(
+            "id_news" => $news,
+            "photo" => $file_name
+        );
+        $this->gallery_model->insert($gallery_data);
+
+        // redirect('index.php/home');
     }
 }

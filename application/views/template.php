@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <title> <?= isset($titulo) ? $titulo : "Citec"?></title>
+    <title> <?= isset($titulo) ? $titulo : "Citec" ?></title>
 </head>
 
 <body>
@@ -21,25 +21,19 @@
                 <a href="#" class="brand-logo"> <img src="<?php echo base_url('./assets/imagens/geec.png') ?>" alt=""> </a>
                 <ul id="nav-itens" class="right hide-on-med-and-down ">
                     <li><a href="<?php echo base_url() ?>">Home</a></li>
-                    <li><a href="<?php echo base_url('index.php/quem') ?>">Quem somos</a></li>
+                    <li><a href="<?php echo base_url('index.php/institutional') ?>">Quem somos</a></li>
                     <li>
                         <a href="#" class="dropdown-trigger" data-target="dropdown-menu">
                             Categorias<i class="material-icons right">arrow_drop_down</i>
                         </a>
                     </li>
                     <li>
-
                     </li>
                 </ul>
                 <ul id="dropdown-menu" class="dropdown-content">
-                    <?php
-                                                            foreach ($noticias as $row) {
-                    ?>
+                    <?php foreach ($noticias as $row) {?>
                         <li><a href="#"><?php echo $row->category ?></a></li>
-                    <?php
-                                                            }
-                    ?>
-
+                    <?php } ?>
                 </ul>
             </div>
         </nav>
@@ -62,9 +56,9 @@
                 </div>
                 <div class="col  l4 m6 s6 text-align">
                     <p><strong>Redes Sociais</strong></p>
-                    
-                    <ul >
-                        
+
+                    <ul>
+
                         <li>
                             <a class="g1-new-window  external" href="https://www.facebook.com/geec.org/" rel="nofollow" target="_blank">
                                 <span class="g1-social-icon g1-social-icon--facebook">
@@ -121,8 +115,6 @@
                 coverTrigger: false
             });
         });
-
-        // Or with jQuery
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>

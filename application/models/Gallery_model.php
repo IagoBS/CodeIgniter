@@ -7,6 +7,11 @@ class Gallery_model extends CI_Model {
     }
     public function get_entries() {
         $query = $this->db->get('gallery');
+        
         return $query->result();
+    }
+    public function insert($data) {
+        $this->db->insert("gallery", $data);
+        
     }
 }

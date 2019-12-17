@@ -19,13 +19,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
       <!--   Icon Section   -->
       <div class="row">
         <?php
-                foreach ($noticias as $row) {
+                foreach ($noticias as $noticia) {
         ?>
           <div class="col s12 m6 l4">
             <div class="icon-block">
-              <h2 class="center brown-text"><img class="responsive-img" src="https://aprendizgeec.org.br/uploads/portal/logo_aprendiz.png" alt=""></h2>
-              <h5 class="center"><?= $row->title ?></h5>
-              <p class="light"><?= substr($row->content, 0, 150) . "[...]" ?></p>
+              <a href="<?= base_url("index.php/details?id={$noticia->id}") ?>">
+                <img class="responsive-img" src="<?php echo isset($noticia->photo) ? base_url(). "uploads/{$noticia->photo}" : "https://aprendizgeec.org.br/uploads/portal/logo_aprendiz.png" ?>">
+              </a>
+              <h5 class="center"><?= $noticia->title ?></h5>
+              <p class="light"><?= substr($noticia->content, 0, 150) . "[...]" ?></p>
             </div>
           </div>
         <?php } ?>
