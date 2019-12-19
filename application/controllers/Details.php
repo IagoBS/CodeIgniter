@@ -6,14 +6,17 @@ class Details extends CI_Controller {
         parent::__construct();
     }
     function index() {
+        $this->details();
+    }
+    public function details() {
         $this->load->model('news_model');
-        $id_news = $this->input->get('id', TRUE);
+        $this->load->helper('url');
+        $id_news = $this->uri->segment(3);
         $news  = $this->news_model->get_news($id_news);
         $date = array(
             "news" => $news,
             "titulo" => "Noticia"
         );
         $this->template->load('template', 'details', $date);
-
     }
 }

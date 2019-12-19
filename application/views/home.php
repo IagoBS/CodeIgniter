@@ -9,7 +9,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
       <h6 class="header col s12 light">entidade não governamental, sem fins lucrativos, que desenvolve diversos projetos culturais, educacionais, científicos, esportivos, ambientais, de saúde </h6>
     </div>
     <div class="row center">
-      <a href="<?= base_url('index.php/formulario') ?>" id="download-button" class="btn-large waves-effect waves-light orange">Criar Noticia</a>
+      <a href="<?= base_url('/formulario') ?>" id="download-button" class="btn-large waves-effect waves-light orange">Criar Noticia</a>
     </div>
     <br><br>
 
@@ -23,11 +23,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
         ?>
           <div class="col s12 m6 l4">
             <div class="icon-block">
-              <a href="<?= base_url("index.php/details?id={$noticia->id}") ?>">
-                <img class="responsive-img" src="<?php echo isset($noticia->photo) ? base_url(). "uploads/{$noticia->photo}" : "https://aprendizgeec.org.br/uploads/portal/logo_aprendiz.png" ?>">
+              <a href="<?= base_url("/details/details/{$noticia->slug}") ?>">
+                <img class="responsive-img" src="<?php echo isset($noticia->photo) ? base_url( "uploads/{$noticia->photo}") : "https://aprendizgeec.org.br/uploads/portal/logo_aprendiz.png" ?>">
               </a>
               <h5 class="center"><?= $noticia->title ?></h5>
-              <p class="light"><?= substr($noticia->content, 0, 150) . "[...]" ?></p>
+              <p class="light"><?= substr($noticia->content, 0, 30) . "[...]" ?></p>
             </div>
           </div>
         <?php } ?>

@@ -1,5 +1,6 @@
+
 <div class="container">
-  <form action="<?php echo base_url('/index.php/formulario/create_news') ?>" method="POST" id="formulario" enctype="multipart/form-data">
+  <form action="<?php echo base_url('/formulario/create_news') ?>" method="POST" id="formulario" enctype="multipart/form-data">
     <label for="author">Selecione o autor</label>
     <select name="author" id="author">
       <?php foreach ($authors as $author) { ?>

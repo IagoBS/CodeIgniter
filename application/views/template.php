@@ -1,4 +1,7 @@
-<?php defined('BASEPATH') or exit('No direct script access allowed');
+<?php
+$categories = $this->categories_model->get_entries();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,24 +20,28 @@
 
     <div class="navbar-fixed">
         <nav class="light-blue darken-3">
-            <div class="nav-wrapper container">
-                <a href="#" class="brand-logo"> <img src="<?php echo base_url('./assets/imagens/geec.png') ?>" alt=""> </a>
+            <div class="nav-wrapper container ">
+                <a href="#" class="brand-logo  left"> <img src="<?php echo base_url('./uploads/geec.png') ?>" alt=""> </a>
                 <ul id="nav-itens" class="right hide-on-med-and-down ">
+                    <li>
+                        <a href="<?php echo base_url('/panel') ?>">
+                            <i class="material-icons left">account_circle</i>
+                        </a>
+                    </li>
                     <li><a href="<?php echo base_url() ?>">Home</a></li>
-                    <li><a href="<?php echo base_url('index.php/institutional') ?>">Quem somos</a></li>
+                    <li><a href="<?php echo base_url('/institutional') ?>">Quem somos</a></li>
                     <li>
                         <a href="#" class="dropdown-trigger" data-target="dropdown-menu">
                             Categorias<i class="material-icons right">arrow_drop_down</i>
                         </a>
                     </li>
-                    <li>
-                    </li>
                 </ul>
                 <ul id="dropdown-menu" class="dropdown-content">
-                    <?php foreach ($noticias as $row) {?>
-                        <li><a href="#"><?php echo $row->category ?></a></li>
+                    <?php foreach ($categories as $row) { ?>
+                        <li><a href="<?php echo base_url("/list_news/category_get/{$row->slug}") ?>"><?php echo $row->name ?></a></li>
                     <?php } ?>
                 </ul>
+
             </div>
         </nav>
     </div>

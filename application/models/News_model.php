@@ -7,7 +7,7 @@ class News_model extends CI_Model {
     }
     public function get_entries() {
         $this->db->select("news.id, news.title, news.content, news.deleted_at,
-        news.dt_register, news.dt_change, categories.name as 'category',
+        news.dt_register, news.dt_change, news.slug, categories.name as 'category',
         authors.name as 'author',  gallery.photo as 'photo'");
         $this->db->from('news');
         $this->db->join('authors', 'authors.id = news.id_author');
@@ -29,8 +29,21 @@ class News_model extends CI_Model {
         $this->db->join('authors', 'authors.id = news.id_author');
         $this->db->join('categories', 'categories.id = news.id_category ');
         $this->db->join('gallery', 'gallery.id_news = news.id');
-        $this->db->where('news.id', $id);
+        $this->db->where('news.slug', $id);
         $query = $this->db->get();
         return $query->result()[0];
     }
+    public function filter_news($id) {
+        $this->db->select("news.id, news.title, news.content, news.deleted_at,
+        news.dt_register, news.dt_change, news.slug, categories.name as 'category',
+        authors.name as 'author', gallery.photo as 'photo' ");
+        $this->db->from('news');
+        $this->db->join('authors', 'authors.id = news.id_author');
+        $this->db->join('categories', 'categories.id = news.id_category ');
+        $this->db->join('gallery', 'gallery.id_news = news.id');
+        $this->db->where('categories.slug', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 }

@@ -1,6 +1,4 @@
-<?php
-defined('BASEPATH') or exit('No direct script access allowed');
-?>
+
 <div class="container">
     <h1 class="center"><?= $news->title ?></h1>
     <p ><?= $news->content ?></p>
