@@ -24,8 +24,8 @@ $categories = $this->categories_model->get_entries();
                 <a href="#" class="brand-logo  left"> <img src="<?php echo base_url('./uploads/geec.png') ?>" alt=""> </a>
                 <ul id="nav-itens" class="right hide-on-med-and-down ">
                     <li>
-                        <a href="<?php echo base_url('/panel') ?>">
-                            <i class="material-icons left">account_circle</i>
+                        <a href="<?php echo base_url('/signin') ?>">
+                            <i class="material-icons left">account_circle</i> <?= $this->session->nome ?>
                         </a>
                     </li>
                     <li><a href="<?php echo base_url() ?>">Home</a></li>

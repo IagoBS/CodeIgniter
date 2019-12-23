@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-class Formulario extends CI_Controller
+class Formulario extends MY_Controller
 {
     function __construct()
     {
@@ -9,6 +9,7 @@ class Formulario extends CI_Controller
         $this->load->model('authors_model');
         $this->load->model('gallery_model');
     }
+       
     public function index()
     {
 
@@ -24,6 +25,7 @@ class Formulario extends CI_Controller
 
         $this->template->load('template', 'formulario', $data);
     }
+
     public function create_news()
     {
 
