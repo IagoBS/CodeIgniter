@@ -13,6 +13,8 @@ $categories = $this->categories_model->get_entries();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="<?php echo base_url('/assets/css/style.css') ?>">
+
     <title> <?= isset($titulo) ? $titulo : "Citec" ?></title>
 </head>
 
@@ -21,7 +23,7 @@ $categories = $this->categories_model->get_entries();
     <div class="navbar-fixed">
         <nav class="light-blue darken-3">
             <div class="nav-wrapper container ">
-                <a href="#" class="brand-logo  left"> <img src="<?php echo base_url('./uploads/geec.png') ?>" alt=""> </a>
+                <a href="<?= base_url() ?>" class="brand-logo  left"><img src="<?php echo base_url('./uploads/geec.png') ?>" height="60px" width="60px" alt=""> </a>
                 <ul id="nav-itens" class="right hide-on-med-and-down ">
                     <li>
                         <a href="<?php echo base_url('/signin') ?>">
@@ -48,55 +50,37 @@ $categories = $this->categories_model->get_entries();
     <!-- contents -->
     <?= $contents ?>
     <!-- contents -->
-    <footer class="page-footer footer_cle black-text light-blue darken-3">
+    <?php
+    $redes = $this->redes_sociais_model->get_entries();
+    ?>
+    <footer class="page-footer footer_cle white-text light-blue darken-3">
         <div class="container ">
             <div class="row">
                 <div class="col xl3 l3 m6 s6 ">
                     <p><strong>Mapa do Site</strong></p>
-                    <ul>
+                    <ul class="colorindo">
                         <li><a href="<?= base_url('home') ?>">Home</a></li>
-                        <li><a href="#">Quem somos</a></li>
-                        <li><a href="#">Categorias</a></li>
-                        <li><a href="#">Noticias</a></li>
-                        <li><a href="#">Adicionar Noticias</a></li>
+                        <li><a href="<?= base_url('/institutional') ?>">Quem somos</a></li>
+                        <li><a href="<?= base_url('/formulario') ?>">Adicionar Noticias</a></li>
                     </ul>
                 </div>
                 <div class="col  l4 m6 s6 text-align">
                     <p><strong>Redes Sociais</strong></p>
 
                     <ul>
-
-                        <li>
-                            <a class="g1-new-window  external" href="https://www.facebook.com/geec.org/" rel="nofollow" target="_blank">
-                                <span class="g1-social-icon g1-social-icon--facebook">
-                                    <img src="https://www.ifd.com.br/wp-content/plugins/g1-social-icons/images/facebook/facebook-48.png" alt="facebook" width="24" height="24">
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="g1-new-window  external" href="http://br.linkedin.com/in/irisfreitasduarte/" rel="nofollow" target="_blank">
-                                <span class="g1-social-icon g1-social-icon--linkedin">
-                                    <img src="https://www.ifd.com.br/wp-content/plugins/g1-social-icons/images/linkedin/linkedin-48.png" alt="linkedin" width="24" height="24">
-                                </span>
-                            </a>
-                        </li>
-                        <li><a class="g1-new-window  external" href="http://www.pinterest.com/ifdblog" rel="nofollow" target="_blank">
-                                <span class="g1-social-icon g1-social-icon--pinterest">
-                                    <img src="https://www.ifd.com.br/wp-content/plugins/g1-social-icons/images/pinterest/pinterest-48.png" alt="pinterest" width="24" height="24">
-                                </span>
-                            </a>
-                        </li>
-                        <li><a class="g1-new-window  external" href="http://feeds.feedburner.com/ifdblog" rel="nofollow" target="_blank"><span class="g1-social-icon g1-social-icon--rss">
-                                    <img src="https://www.ifd.com.br/wp-content/plugins/g1-social-icons/images/rss/rss-48.png" alt="rss" width="24" height="24">
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="g1-new-window  external" href="http://www.twitter.com/ifd" rel="nofollow" target="_blank">
-                                <span class="g1-social-icon g1-social-icon--twitter"><img src="https://www.ifd.com.br/wp-content/plugins/g1-social-icons/images/twitter/twitter-48.png" alt="twitter" width="24" height="24">
-                                </span>
-                            </a>
-                        </li>
+                        <?php
+                        foreach ($redes as $network) {
+                        ?>
+                            <li>
+                                <a class="g1-new-window  external" href="<?= $network->links ?>" rel="nofollow" target="_blank">
+                                    <span class="g1-social-icon g1-social-icon--facebook">
+                                        <img src="<?php echo isset($network->photo) ? base_url("uploads/{$network->incone}") : "https://aprendizgeec.org.br/uploads/portal/logo_aprendiz.png" ?>" alt="<?= $network->name ?>" width="24" height="24">
+                                    </span>
+                                </a>
+                            </li>
+                        <?php
+                        }
+                        ?>
                     </ul>
                     <a href="" target="_blank" class="">
                         <img src="" height="150px" width="150px" alt="">

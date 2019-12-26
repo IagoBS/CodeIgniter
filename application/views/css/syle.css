@@ -1,0 +1,22 @@
+.colorindo {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    color: blue;
+}
+
+a {
+    color: grey;
+    text-decoration: lightseagreen;
+}
+a:visited {
+    color: blue;
+    text-decoration: underline;
+}
+a:hover {
+    color: cornflowerblue;
+}
+a:active {
+    text-emphasis: none;
+    text-decoration: underline;
+
+}

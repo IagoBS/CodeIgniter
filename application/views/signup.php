@@ -19,6 +19,11 @@
                 <input id="senha" type="password" name="pass" class="validate" placeholder="Senha " class="validate center">
             </div>
         </div>
+        <?php
+        if (isset($error)) {
+            echo "<p>" . $error . "</p>";
+        }
+        ?>
     </form>
     <button form="signup" type="submit">Enviar</button>
 </div>

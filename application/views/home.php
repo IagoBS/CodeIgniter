@@ -3,28 +3,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
 ?>
 <div class="section no-pad-bot" id="index-banner">
   <div class="container">
-    <br><br>
+
     <h1 class="header center blue-text">Geec - Grupo de Educação, Ética e Cidadania</h1>
     <div class="row center">
       <h6 class="header col s12 light">entidade não governamental, sem fins lucrativos, que desenvolve diversos projetos culturais, educacionais, científicos, esportivos, ambientais, de saúde </h6>
     </div>
-    <div class="row center">
-      <a href="<?= base_url('/formulario') ?>" id="download-button" class="btn-large waves-effect waves-light orange">Criar Noticia</a>
-    </div>
-    <br><br>
-
-
+    <?php if ($this->session->logged_in) { ?>
+      <div class="row center">
+        <a href="<?= base_url('/formulario') ?>" id="download-button" class="btn-large waves-effect waves-light orange">Criar Noticia</a>
+      </div>
+    <?php  } ?>
 
     <div class="section">
       <!--   Icon Section   -->
       <div class="row">
         <?php
-                foreach ($noticias as $noticia) {
+        foreach ($noticias as $noticia) {
         ?>
           <div class="col s12 m6 l4">
             <div class="icon-block">
               <a href="<?= base_url("/details/details/{$noticia->slug}") ?>">
-                <img class="responsive-img" src="<?php echo isset($noticia->photo) ? base_url( "uploads/{$noticia->photo}") : "https://aprendizgeec.org.br/uploads/portal/logo_aprendiz.png" ?>">
+                <img class="responsive-img" src="<?php echo isset($noticia->photo) ? base_url("uploads/{$noticia->photo}") : "https://aprendizgeec.org.br/uploads/portal/logo_aprendiz.png" ?>">
               </a>
               <h5 class="center"><?= $noticia->title ?></h5>
               <p class="light"><?= substr($noticia->content, 0, 30) . "[...]" ?></p>
@@ -33,35 +32,39 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <?php } ?>
       </div>
     </div>
+
   </div>
 
 
-  <div class="#e0e0e0 grey lighten-4">
-    <div class="row">
-      <div class="col s12 m6 ">
-        <h5 class="start text-primarycolor">Jovem Aprendiz</h5>
-        <p>O Programa Inclusão Aprendiz do GEEC visa oferecer oportunidade de trabalho e renda para jovens e adolescentes das camadas menos favorecidas da sociedade, afastando-os de situações de risco social
-        </p>
-        <ul style="margin-bottom: 16px;padding-left: 16px;">
-          <li style="margin: 5px 0;padding: 0;list-style: initial;font-size:14px;">promovendo a inclusão social, profissional e a cidadania</li>
-          <li style="margin: 5px 0;padding: 0;list-style: initial;font-size:14px;">O projeto também se estende a pessoas com deficiência</li>
-          <li style="margin: 5px 0;padding: 0;list-style: initial;font-size:14px;">O programa está em atividade desde 2010 e oferece cursos de qualificação profissional a jovens com idade entre 14 e 24 anos</li>
-          <li style="margin: 5px 0;padding: 0;list-style: initial;font-size:14px;">Lei de Aprendizagem (nº.10.097 de 2000, regulamentada pelo Decreto nº. 9.579 de 22 de Novembro de 2018</li>
-        </ul>
-        <div class="center">
-          <a class="waves-effect waves-light btn" href="https://portal.aprendizgeec.org.br/" style="margin-bottom:10px;">Mais Informações</a>
-        </div>
+  <div class="section  blue darken-3 ">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m6 ">
+          <h5 class="start white-text">Jovem Aprendiz</h5>
+          <p class="white-text">O Programa Inclusão Aprendiz do GEEC visa oferecer oportunidade de trabalho e renda para jovens e adolescentes das camadas menos favorecidas da sociedade, afastando-os de situações de risco social
+          </p>
+          <ul class="lista-template">
+            <li>promovendo a inclusão social, profissional e a cidadania</li>
+            <li>O projeto também se estende a pessoas com deficiência</li>
+            <li>O programa está em atividade desde 2010 e oferece cursos de qualificação profissional a jovens com idade entre 14 e 24 anos</li>
+            <li>Lei de Aprendizagem (nº.10.097 de 2000, regulamentada pelo Decreto nº. 9.579 de 22 de Novembro de 2018</li>
+          </ul>
+          <div class="center">
+            <a class="waves-effect waves-light btn" href="https://portal.aprendizgeec.org.br/" style="margin-bottom:10px;">Mais Informações</a>
+          </div>
 
-      </div>
-      <div class="col s6 offset-s3 m6 center">
-        <img class="responsive-img" src="https://aprendizgeec.org.br/uploads/portal/logo_aprendiz.png">
+        </div>
+        <div class="col s6 offset-s3 m6 center">
+          <img class="responsive-img" src="https://aprendizgeec.org.br/uploads/portal/logo_aprendiz.png">
+        </div>
       </div>
     </div>
   </div>
 
 
 
-  <div class="section #e0e0e0 grey lighten-4" id="remotemanagement">
+
+  <div class="section  grey lighten-4" id="remotemanagement">
     <div class="container">
       <div class="row">
         <div class="col s12 m6 ">
@@ -85,7 +88,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   </div>
 
 
-  <div class="section #1565c0 blue darken-3" id="custom">
+  <div class="section blue darken-3" id="custom">
     <div class="container">
       <div class="row">
         <div class="col s6 offset-s3 m6 center">
@@ -94,10 +97,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div class="col s12 m6">
           <h5 class="start white-text center">Clube do livro</h5>
           <p class="start-paragraph-text" style="color:rgba(255, 255, 255, .8);">desfrute de deliciosos momentos que só a literatura pode proporcionar.</p>
-          <ul style="margin-bottom: 16px;padding-left: 16px;color:rgba(255, 255, 255, .8);">
-            <li style="margin: 14px 0;padding: 0;list-style: initial;font-size:14px;">Entre Com Seus Dados</li>
-            <li style="margin: 14px 0;padding: 0;list-style: initial;font-size:14px;">Escolha Seu Plano</li>
-            <li style="margin: 14px 0;padding: 0;list-style: initial;font-size:14px;">Desfrute De Uma Boa Leitura</li>
+          <ul class="lista-template">
+            <li>Entre Com Seus Dados</li>
+            <li>Escolha Seu Plano</li>
+            <li>Desfrute De Uma Boa Leitura</li>
           </ul>
           <p>
             <a href="https://www.clubeespirita.com.br/" target="_blank" class="white-text flow-text"><i class="material-icons">arrow_forward</i> Mais informações</a>

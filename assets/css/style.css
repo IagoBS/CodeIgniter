@@ -1,0 +1,35 @@
+
+.colorindo li > a {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #e0f7fa ;
+}
+.lista-template li {
+    margin: 5px 0;
+    padding: 0;
+    list-style: initial;
+    font-size:14px;;
+    color: white;
+}
+.login {
+   display: flex;
+   align-content: center;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+}
+form {
+    width: 300px;
+}
+.botao {
+    width: 300px;
+    border: 0;
+    color: white;
+    background: #0277bd;
+    height: 50px;
+}
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+
+}

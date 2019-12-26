@@ -9,7 +9,7 @@ class Formulario extends MY_Controller
         $this->load->model('authors_model');
         $this->load->model('gallery_model');
     }
-       
+
     public function index()
     {
 
@@ -32,34 +32,44 @@ class Formulario extends MY_Controller
         $this->load->helper(['url']);
         $this->load->model('news_model');
         $this->load->library('upload');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('dt_register', 'dt_register', 'required');
+        $this->form_validation->set_rules('category', 'category', 'required');
+        $this->form_validation->set_rules('title', 'title', 'required|min_length[1]|max_length[30]');
+        $this->form_validation->set_rules('content', 'content', 'required|min_length[1]|max_length[10000]');
+        if ($this->form_validation->run() == FALSE) {
+            $data = array(
+                "titulo" => "criar noticia",
+                "error" => validation_errors()
+            );
+            $this->template->load('template', 'formulario', $data);
+        } else {
+            $data = array(
+                "id_author" =>  $this->session->id, 
+                "dt_register" => $this->input->post('dt_register'),
+                "dt_change" => date('Y-m-d'),
+                "id_category" => $this->input->post('category'),
+                "title" => $this->input->post('title'),
+                "content" => $this->input->post('content'),
+                "slug" => $this->slugify($this->input->post('title'))
+            );
+            $news = $this->news_model->insert($data);
+            $config['upload_path']          = './uploads/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['file_name'] = md5(uniqid(rand(), TRUE));
+            $this->upload->initialize($config);
+            $this->upload->do_upload('photo');
+            $gallery_data = array(
+                "id_news" => $news,
+                "photo" => $this->upload->data('file_name')
+            );
+            $this->gallery_model->insert($gallery_data);
 
-
-        $data = array(
-            "id_author" => $this->input->post('author'),
-            "dt_register" => $this->input->post('dt_register'),
-            "dt_change" => date('Y-m-d'),
-            "id_category" => $this->input->post('category'),
-            "title" => $this->input->post('title'),
-            "content" => $this->input->post('content'),
-            "slug" => $this->slugify($this->input->post('title'))
-        );
-        $news = $this->news_model->insert($data);
-
-        $config['upload_path']          = './uploads/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['file_name'] = md5(uniqid(rand(), TRUE));
-        $this->upload->initialize($config);
-        $this->upload->do_upload('photo');
-        
-        $gallery_data = array(
-            "id_news" => $news,
-            "photo" => $this->upload->data('file_name')
-        );
-        $this->gallery_model->insert($gallery_data);
-
-        redirect('index.php/home');
+            redirect('index.php/home');
+        }
     }
-    function slugify($string) {
+    function slugify($string)
+    {
         $string = preg_replace('/[\t\n]/', ' ', $string);
         $string = preg_replace('/\s{2,}/', ' ', $string);
         $list = array(
@@ -144,12 +154,11 @@ class Formulario extends MY_Controller
             ':' => 'a',
             '(' => 'b',
             ')' => 'c',
-            
+
         );
         $string = strtr($string, $list);
         $string = preg_replace('/-{2,}/', '-', $string);
         $string = strtolower($string);
         return $string;
     }
-     
 }
