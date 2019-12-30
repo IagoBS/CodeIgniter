@@ -28,9 +28,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             O GEEC também está crescendo e, além de Divinópolis, vem atuando também em Itapecerica, São Sebastião do Oeste, Nova Serrana, Formiga, Betim, Itaúna e São Gonçalo do Pará.
         </p>
     </div>
-    <blockquote class="blue">
-        This is an example quotation that uses the blockquote tag.
-    </blockquote>
+    
     <div class="row">
         <div class="col s12 m4">
             <div class="card-panel  #03a9f4 light-blue">

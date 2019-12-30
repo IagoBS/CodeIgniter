@@ -1,7 +1,5 @@
 <?php
 $categories = $this->categories_model->get_entries();
-
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -32,6 +30,10 @@ $categories = $this->categories_model->get_entries();
                     </li>
                     <li><a href="<?php echo base_url() ?>">Home</a></li>
                     <li><a href="<?php echo base_url('/institutional') ?>">Quem somos</a></li>
+                    <?php if ($this->session->logged_in) { ?>
+                        <li><a href="<?php echo base_url('/social_network') ?>">Adicionar rede social</a></li>
+                        <li><a href="<?php echo base_url('/formulario') ?>">Criar noticia</a></li>
+                    <?php } ?>
                     <li>
                         <a href="#" class="dropdown-trigger" data-target="dropdown-menu">
                             Categorias<i class="material-icons right">arrow_drop_down</i>
@@ -47,12 +49,12 @@ $categories = $this->categories_model->get_entries();
             </div>
         </nav>
     </div>
-    <!-- contents -->
-    <?= $contents ?>
-    <!-- contents -->
-    <?php
-    $redes = $this->redes_sociais_model->get_entries();
-    ?>
+    <main>
+        <!-- contents -->
+        <?= $contents ?>
+        <!-- contents -->
+    </main>
+
     <footer class="page-footer footer_cle white-text light-blue darken-3">
         <div class="container ">
             <div class="row">
@@ -65,7 +67,12 @@ $categories = $this->categories_model->get_entries();
                     </ul>
                 </div>
                 <div class="col  l4 m6 s6 text-align">
+
                     <p><strong>Redes Sociais</strong></p>
+            
+                    <?php
+                    $redes = $this->redes_sociais_model->get_entries();
+                    ?>
 
                     <ul>
                         <?php
@@ -74,7 +81,7 @@ $categories = $this->categories_model->get_entries();
                             <li>
                                 <a class="g1-new-window  external" href="<?= $network->links ?>" rel="nofollow" target="_blank">
                                     <span class="g1-social-icon g1-social-icon--facebook">
-                                        <img src="<?php echo isset($network->photo) ? base_url("uploads/{$network->incone}") : "https://aprendizgeec.org.br/uploads/portal/logo_aprendiz.png" ?>" alt="<?= $network->name ?>" width="24" height="24">
+                                    <img class="responsive-img" height="50px" width="50px" src="<?php echo isset($network->incone) ? base_url("uploads/{$network->incone}") : "https://aprendizgeec.org.br/uploads/portal/logo_aprendiz.png" ?>">
                                     </span>
                                 </a>
                             </li>

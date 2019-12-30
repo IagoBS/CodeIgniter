@@ -9,12 +9,9 @@ class Formulario extends MY_Controller
         $this->load->model('authors_model');
         $this->load->model('gallery_model');
     }
-
     public function index()
     {
-
         $this->load->helper('form');
-
         $authors = $this->authors_model->get_entries();
         $categories = $this->categories_model->get_entries();
         $data = array(
@@ -22,21 +19,18 @@ class Formulario extends MY_Controller
             "authors" => $authors,
             "categories" => $categories,
         );
-
         $this->template->load('template', 'formulario', $data);
     }
-
     public function create_news()
     {
-
         $this->load->helper(['url']);
         $this->load->model('news_model');
         $this->load->library('upload');
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('dt_register', 'dt_register', 'required');
-        $this->form_validation->set_rules('category', 'category', 'required');
-        $this->form_validation->set_rules('title', 'title', 'required|min_length[1]|max_length[30]');
-        $this->form_validation->set_rules('content', 'content', 'required|min_length[1]|max_length[10000]');
+        $this->form_validation->set_rules('dt_register', 'dt_register', 'required',   array('required' => 'Você deve preencher a data.'));
+        $this->form_validation->set_rules('category', 'category', 'required',   array('required' => 'Você deve preencher a categoria.'));
+        $this->form_validation->set_rules('title', 'title', 'required|min_length[1]|max_length[30]',   array('required' => 'Você deve preencher o titulo ou titulo grande de mais.'));
+        $this->form_validation->set_rules('content', 'content', 'required|min_length[1]|max_length[10000]',  array('required' => 'Você deve preencher o texto.'));
         if ($this->form_validation->run() == FALSE) {
             $data = array(
                 "titulo" => "criar noticia",
@@ -57,6 +51,7 @@ class Formulario extends MY_Controller
             $config['upload_path']          = './uploads/';
             $config['allowed_types']        = 'gif|jpg|png';
             $config['file_name'] = md5(uniqid(rand(), TRUE));
+            $config['file_ext'] = 'gif|jpg|png|jpeg';
             $this->upload->initialize($config);
             $this->upload->do_upload('photo');
             $gallery_data = array(
@@ -64,7 +59,6 @@ class Formulario extends MY_Controller
                 "photo" => $this->upload->data('file_name')
             );
             $this->gallery_model->insert($gallery_data);
-
             redirect('index.php/home');
         }
     }
@@ -154,7 +148,6 @@ class Formulario extends MY_Controller
             ':' => 'a',
             '(' => 'b',
             ')' => 'c',
-
         );
         $string = strtr($string, $list);
         $string = preg_replace('/-{2,}/', '-', $string);
